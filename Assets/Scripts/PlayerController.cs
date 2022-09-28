@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public Vector3 UpdateTarget() // return a vector3 world position for target based on mouse position
+    public Vector3 UpdateTarget() // return a vector3 world position for target, based on mouse position
     {
         
         // establish screen bounds with 5% margin from top and side edges, 15% margin at bottom
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         // get mouse position on screen
         mousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
-        // limit mouse position to screen bounds
+        // limit mouse position to horizontal screen bounds
         if (mousePos.x > screenLimit.x)
         {
             mousePos = new Vector2(screenLimit.x, mousePos.y);
@@ -43,7 +43,8 @@ public class PlayerController : MonoBehaviour
         {
             mousePos = new Vector2(screenOrigin.x, mousePos.y);
         }
-        
+
+        // limit mouse position to vertical screen bounds
         if (mousePos.y > screenLimit.y)
         {
             mousePos = new Vector2(mousePos.x, screenLimit.y);
@@ -66,5 +67,15 @@ public class PlayerController : MonoBehaviour
         }
 
         return worldPos;
+    }
+
+    public void ChangeDamageType()
+    {
+        // cycle to next damage type -- separate cooldowns on types or single firing delay?
+    }
+
+    public void CheckFiringReadiness()
+    {
+        // need coroutine to count down fire delay
     }
 }

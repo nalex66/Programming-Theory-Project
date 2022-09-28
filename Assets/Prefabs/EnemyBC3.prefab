@@ -818,6 +818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1789896972627857374}
+  - component: {fileID: 6726174429506318489}
   m_Layer: 0
   m_Name: Hips_jnt
   m_TagString: Untagged
@@ -843,6 +844,19 @@ Transform:
   m_Father: {fileID: 1789896972627857282}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6726174429506318489
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789896972627366814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.75, y: 1, z: 1}
+  m_Center: {x: -0.5, y: 0, z: 0}
 --- !u!1 &1789896972627366818
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +868,6 @@ GameObject:
   - component: {fileID: 1789896972627857282}
   - component: {fileID: 1789896972636856352}
   - component: {fileID: -2341583269389495822}
-  - component: {fileID: -6861100784349521969}
   - component: {fileID: 7770268877649256666}
   m_Layer: 0
   m_Name: EnemyBC3
@@ -871,7 +884,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789896972627366818}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -12, y: 0, z: 25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -923,19 +936,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1139518a842a7464c9522819cf20266c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &-6861100784349521969
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1789896972627366818}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 3, z: 1}
-  m_Center: {x: 0, y: 1.5, z: 0}
+  health: 10
+  damageOverTime: {fileID: 5581853927429141229, guid: ffcfe916ce61aea4f9dea8ece6ddc6f8, type: 3}
 --- !u!54 &7770268877649256666
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -950,7 +952,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!1 &1789896972627366910
 GameObject:

@@ -11,9 +11,10 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
     public GameObject gameOverScreen;
     public List<GameObject> enemies;
+    public GameObject missileStrike;
     public Vector3 EndZone = new Vector3(0, 0, -30);
+    public GameObject targetPosition;
     
-    private GameObject targetPosition;
     private PlayerController playerController;
     // private EnemyController enemyController;
     private float spawnRate = 0.5f;
@@ -42,17 +43,19 @@ public class GameManager : MonoBehaviour
             targetPosition.transform.position = playerController.UpdateTarget(); 
 
             // check mouse button input
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
-                // check conditions to fire, fire missile
-                Debug.Log("left click");
+                // check conditions to fire
+                // logic for missile-readiness in PlayerController?
+                Instantiate(missileStrike, targetPosition.transform.position, targetPosition.transform.rotation);
 
             }
 
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButtonDown(1))
             {
-                // change weapon type
+                // change weapon type, in PlayerController?
                 Debug.Log("right click");
+
 
             }
             
@@ -75,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     Vector3 RandomSpawnPos()
     {
-        return new Vector3(Random.Range(-xRange, xRange), 0.1f, zSpawnPos);
+        return new Vector3(Random.Range(-xRange, xRange), 0.2f, zSpawnPos);
     }
 
     void SpawnEnemy()

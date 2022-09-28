@@ -6,14 +6,21 @@ public class EnemyController : MonoBehaviour
 {
     private float speed = 1.6f;
     public float health = 10;
+    public ParticleSystem damageOverTime;
     private float angleOffset;
     private Vector3 direction;
+    private float counter;
+    private bool isDamageActive = false;
+    private Animator enemyAnim;
+
     // virtual static floats for fire, ice, and electricity damage multipliers
-    
+
     private GameManager gameManager;
+
     void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        enemyAnim = GetComponent<Animator>();
         // turn towards player endzone
         direction = (gameManager.EndZone - transform.position).normalized;
         angleOffset = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
@@ -24,15 +31,30 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health > 0)
+        if (isDamageActive)
+        {
+            health -= 2 * Time.deltaTime; // other.damage * damagemultiplier
+            counter += Time.deltaTime;
+            if (counter > 10)               // var damageDuration based on enemy type, damage type?
+            {
+                isDamageActive = false;     // damageDuration should influence duration of particleFX?              
+            }
+        }
+
+       /* if (health > 0) // trying with animation driving motion rather than translate
         {
             // if alive, move forward
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        }
-        else if (health < 0)
+        }*/
+        
+        else if (health < 0 && !enemyAnim.GetBool("Death_b"))
         {
-            //fall over and die, start coroutine to destroy a few seconds later
+            //fall over and die, start timer to destroy body
+            enemyAnim.SetBool("Death_b", true);
+            enemyAnim.SetInteger("DeathType_int", 2);
+            StartCoroutine(DeathDelay());
         }
+        
 
         if (transform.position.z < gameManager.EndZone.z)
         {
@@ -45,14 +67,18 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // check for collision with missile strike zone
-    // we can do this on each enemy, or on each strike zone
-    // might be easier to apply damage over time from here?
-    // but more script calls with lots of enemies on the map?
-     
+         
     private void OnTriggerEnter(Collider other) 
     {
-        // health -= other.damage * damagemultiplier
-        // particle effect from damage source?
+        counter = 0; // entering new damage zone will replace current one-- one per damage type?
+        isDamageActive = true; // might need way to track multiple instances of damage active
+        ParticleSystem damage = Instantiate(damageOverTime, transform.position + Vector3.up*1f, damageOverTime.transform.rotation) as ParticleSystem;
+        damage.transform.SetParent(gameObject.transform); // activate particle effect for damage type, attach to enemy
+    }
+
+    IEnumerator DeathDelay()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
     }
 }
