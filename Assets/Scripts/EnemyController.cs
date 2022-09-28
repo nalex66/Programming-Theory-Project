@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }*/
         
-        else if (health < 0 && !enemyAnim.GetBool("Death_b"))
+        if (health < 0 && !enemyAnim.GetBool("Death_b"))
         {
             //fall over and die, start timer to destroy body
             enemyAnim.SetBool("Death_b", true);
