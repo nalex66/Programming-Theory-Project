@@ -11,14 +11,14 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
     public GameObject gameOverScreen;
     public List<GameObject> enemies;
-    public Vector3 EndZone = new Vector3(0, 0, -20);
+    public Vector3 EndZone = new Vector3(0, 0, -30);
     
     private GameObject targetPosition;
     private PlayerController playerController;
     // private EnemyController enemyController;
     private float spawnRate = 0.5f;
-    private float xRange = 45;
-    private float zSpawnPos = 25;
+    private float xRange = 48;
+    private float zSpawnPos = 35;
 
 
     // Start is called before the first frame update
