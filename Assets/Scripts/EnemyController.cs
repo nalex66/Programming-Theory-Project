@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private float speed = 1.6f;
+    // private float speed = 1.6f;
     public float health = 10;
-    public ParticleSystem damageOverTime;
     private float angleOffset;
     private Vector3 direction;
     private float counter;
     private bool isDamageActive = false;
     private Animator enemyAnim;
+    private ParticleSystem damageType;
 
     // virtual static floats for fire, ice, and electricity damage multipliers
 
@@ -72,13 +72,17 @@ public class EnemyController : MonoBehaviour
     {
         counter = 0; // entering new damage zone will replace current one-- one per damage type?
         isDamageActive = true; // might need way to track multiple instances of damage active
-        ParticleSystem damage = Instantiate(damageOverTime, transform.position + Vector3.up*1f, damageOverTime.transform.rotation) as ParticleSystem;
+
+        // get damage type from other.damageIndex
+        damageType = other.GetComponent<MissileStrike>().damageType;
+
+        ParticleSystem damage = Instantiate(damageType, transform.position + Vector3.up*1f, damageType.transform.rotation) as ParticleSystem;
         damage.transform.SetParent(gameObject.transform); // activate particle effect for damage type, attach to enemy
     }
 
     IEnumerator DeathDelay()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         Destroy(gameObject);
     }
 }

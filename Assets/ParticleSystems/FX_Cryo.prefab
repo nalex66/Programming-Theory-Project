@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5749763748105319309}
   - component: {fileID: 5749763748103637951}
   m_Layer: 0
-  m_Name: FX_Snow
+  m_Name: FX_Cryo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

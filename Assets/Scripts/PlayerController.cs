@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject targetIndicator;
+    public bool isMissileReady;
+    public List<ParticleSystem> weaponType;
+    public List<ParticleSystem> damageType;
+    public List<Material> damageColor;
+    public int damageIndex;
+
     private Camera cam;
     private Vector3 worldPos;
     private Vector2 mousePos;
@@ -11,11 +18,16 @@ public class PlayerController : MonoBehaviour
     private Vector2 screenLimit;
     private Ray targetRay;
     private Plane targetPlane = new Plane(Vector3.up, 0);
+    private float strikeDelay = 3.0f;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
+        damageIndex = 0;
+        isMissileReady = true;
+        targetIndicator.GetComponent<Renderer>().material.SetColor("_Color", damageColor[damageIndex].color);
     }
 
     // Update is called once per frame
@@ -69,13 +81,29 @@ public class PlayerController : MonoBehaviour
         return worldPos;
     }
 
-    public void ChangeDamageType()
+    public void CycleDamageType()
     {
-        // cycle to next damage type -- separate cooldowns on types or single firing delay?
+        // cycle to next damage type
+        damageIndex++;
+        if (damageIndex >= weaponType.Count)
+        {
+            damageIndex = 0;
+        }
+        targetIndicator.GetComponent<Renderer>().material.SetColor("_Color", damageColor[damageIndex].color);
     }
 
-    public void CheckFiringReadiness()
+    public void ReadyNextMissle()
     {
-        // need coroutine to count down fire delay
+        // count down fire delay, change target indicator, isMissileReady = true;
+        isMissileReady = false;
+        targetIndicator.SetActive(false);
+        StartCoroutine(StrikeDelay());
+    }
+
+    IEnumerator StrikeDelay()
+    {
+        yield return new WaitForSeconds(strikeDelay);
+        targetIndicator.SetActive(true);
+        isMissileReady = true;
     }
 }

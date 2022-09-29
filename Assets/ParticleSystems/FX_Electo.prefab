@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8104489851380044636}
   - component: {fileID: 8104489851381525358}
   m_Layer: 0
-  m_Name: FX_Electricity
+  m_Name: FX_Electo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

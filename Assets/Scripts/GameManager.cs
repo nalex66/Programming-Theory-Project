@@ -12,14 +12,14 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverScreen;
     public List<GameObject> enemies;
     public GameObject missileStrike;
-    public Vector3 EndZone = new Vector3(0, 0, -30);
+    public Vector3 EndZone = new Vector3(0, 0, -35);
     public GameObject targetPosition;
     
     private PlayerController playerController;
-    // private EnemyController enemyController;
     private float spawnRate = 0.5f;
     private float xRange = 48;
     private float zSpawnPos = 35;
+    
 
 
     // Start is called before the first frame update
@@ -43,20 +43,17 @@ public class GameManager : MonoBehaviour
             targetPosition.transform.position = playerController.UpdateTarget(); 
 
             // check mouse button input
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && playerController.isMissileReady)
             {
-                // check conditions to fire
-                // logic for missile-readiness in PlayerController?
+                // fire missile
                 Instantiate(missileStrike, targetPosition.transform.position, targetPosition.transform.rotation);
-
+                playerController.ReadyNextMissle();
             }
 
             if (Input.GetMouseButtonDown(1))
             {
-                // change weapon type, in PlayerController?
-                Debug.Log("right click");
-
-
+                // change weapon type on right-click
+                playerController.CycleDamageType();
             }
             
         }

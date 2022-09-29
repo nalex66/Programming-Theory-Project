@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missile: {fileID: 8064704530174831976}
+  strikeIndicator: {fileID: 2871593375302720725}
   explosion: {fileID: 1413175492912820725, guid: 93d0e5ff756611a4a8b67f6a0786ae78, type: 3}
   damageEffect: {fileID: 5581853927429141229, guid: 807dc3d20518b80438fd90a6a7824f6e, type: 3}
 --- !u!135 &5789174519107852519
@@ -80,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5727321380937029966, guid: 2737008d109997845a9f8e4a82c6c61f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 40
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5727321380937029966, guid: 2737008d109997845a9f8e4a82c6c61f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -198,5 +199,10 @@ PrefabInstance:
 --- !u!4 &2868670344772327265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1864412889173322195, guid: c7aa2fa68a2d24c4793713e751d7e7f7, type: 3}
+  m_PrefabInstance: {fileID: 4472120471089839794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2871593375302720725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1858257295411470951, guid: c7aa2fa68a2d24c4793713e751d7e7f7, type: 3}
   m_PrefabInstance: {fileID: 4472120471089839794}
   m_PrefabAsset: {fileID: 0}

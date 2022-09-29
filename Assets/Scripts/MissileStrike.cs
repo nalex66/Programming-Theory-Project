@@ -6,35 +6,35 @@ public class MissileStrike : MonoBehaviour
 {   
     // spawn missile headed to ground, ground target indicator, strike fx, collider with trigger, particle effects
     public GameObject missile;
-    // public GameObject strikeIndicator; not needed now--not handling object, it exists as a child of Missile Strike
+    public GameObject strikeIndicator;
     public ParticleSystem explosion;
-    public ParticleSystem damageEffect; // need to select based on damage type
+    public ParticleSystem damageType;
 
     private GameManager gameManager;
+    private PlayerController playerController;
     private Vector3 strikePosition;
-    private float missileSpeed = 50;
+    private float missileSpeed = 80;
     private float strikeDuration = 10;
     private float counter;
-    
-
-    
-    
+    private int damageIndex;
+    private Color damageColor;
+    private ParticleSystem weaponType;
+ 
 
     void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        playerController = GameObject.Find("Player Controller").GetComponent<PlayerController>();
         strikePosition = gameManager.targetPosition.transform.position;
-        this.GetComponent<SphereCollider>().enabled = false; // will turn on collider when missile strikes
-        counter = 0;
+        damageIndex = playerController.damageIndex;
+        weaponType = playerController.weaponType[damageIndex];
+        damageType = playerController.damageType[damageIndex];
+        damageColor = playerController.damageColor[damageIndex].color;
         
 
-        // need to assign strike indicator color based on damage type
-        // need to assign damage effect based on damage type
-        
-        // missile moves downward, is destroyed on impact -- explosion fx
-        // strikeIndicator has collider with trigger to activate damage on enemies,
-        
-
+        strikeIndicator.GetComponent<Renderer>().material.SetColor("_Color", damageColor);
+        GetComponent<SphereCollider>().enabled = false; // will turn on collider when missile strikes
+        counter = 0;        
     }
 
     // Update is called once per frame
@@ -47,9 +47,8 @@ public class MissileStrike : MonoBehaviour
             {
                 Destroy(missile);
                 Instantiate(explosion, strikePosition, explosion.transform.rotation);
-                // instantiate particle effect based on damage type
-                Instantiate(damageEffect, strikePosition, explosion.transform.rotation);
-                this.GetComponent<SphereCollider>().enabled = true;
+                Instantiate(weaponType, strikePosition, weaponType.transform.rotation);
+                GetComponent<SphereCollider>().enabled = true;
             }
         }
 

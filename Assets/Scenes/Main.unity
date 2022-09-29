@@ -789,7 +789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640141569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 18}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -931,6 +931,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752115922}
   m_CullTransparentMesh: 1
+--- !u!1 &1922233625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 976464277440765398, guid: 5064acc9234c03c48abb42d48e937fd7, type: 3}
+  m_PrefabInstance: {fileID: 6006844786362762298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2030063468
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,6 +965,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf12c7561f944c74fab0db16f81e8483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetIndicator: {fileID: 1922233625}
+  isMissileReady: 0
+  weaponType:
+  - {fileID: 5581853927429141229, guid: 807dc3d20518b80438fd90a6a7824f6e, type: 3}
+  - {fileID: 5749763748105319309, guid: 405e894266ce07348b77fc4903f2e24c, type: 3}
+  - {fileID: 8104489851380044636, guid: 367d9a32c83579c408b57dbee6764ce1, type: 3}
+  damageType:
+  - {fileID: 5581853927429141229, guid: ffcfe916ce61aea4f9dea8ece6ddc6f8, type: 3}
+  - {fileID: 5581853927429141229, guid: ffcfe916ce61aea4f9dea8ece6ddc6f8, type: 3}
+  - {fileID: 5581853927429141229, guid: ffcfe916ce61aea4f9dea8ece6ddc6f8, type: 3}
+  damageColor:
+  - {fileID: 2100000, guid: 10aebe5ec031d914b9ab18f6fd8b2c0f, type: 2}
+  - {fileID: 2100000, guid: 44ad454ab0ea9e7409188a3e987813a4, type: 2}
+  - {fileID: 2100000, guid: 77edfd1072c738a4e989821db2fc1f1f, type: 2}
+  damageIndex: 0
 --- !u!4 &2030063470
 Transform:
   m_ObjectHideFlags: 0
