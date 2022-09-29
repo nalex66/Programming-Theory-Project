@@ -8,23 +8,25 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public bool isGameActive;
     public GameObject gameOverScreen;
     public List<GameObject> enemies;
     public GameObject missileStrike;
-    public Vector3 EndZone = new Vector3(0, 0, -35);
     public GameObject targetPosition;
-    
+
+    public Vector3 endZone { get; private set; }    // ENCAPSULATION - variable is accessed from other classes but not modified
+
+    private bool isGameActive;
     private PlayerController playerController;
-    private float spawnRate = 0.5f;
+    private float spawnRate = 1f;
     private float xRange = 48;
-    private float zSpawnPos = 35;
+    private float zSpawnPos = 40;
     
 
 
     // Start is called before the first frame update
     void Start()
     {
+        endZone = new Vector3(0, 0, -25);
         targetPosition = GameObject.Find("Player Controller");
         playerController = GameObject.Find("Player Controller").GetComponent<PlayerController>();
         isGameActive = true;
@@ -53,7 +55,7 @@ public class GameManager : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 // change weapon type on right-click
-                playerController.CycleDamageType();
+                playerController.CycleDamageType();     // ABSTRACTION - calculations are removed to a separate method
             }
             
         }
@@ -86,8 +88,6 @@ public class GameManager : MonoBehaviour
             Instantiate(enemies[index], RandomSpawnPos(), enemies[index].transform.rotation);
         }
 
-    }
-
-    
+    }    
 
 }

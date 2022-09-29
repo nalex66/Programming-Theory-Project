@@ -8,7 +8,8 @@ public class MissileStrike : MonoBehaviour
     public GameObject missile;
     public GameObject strikeIndicator;
     public ParticleSystem explosion;
-    public ParticleSystem damageType;
+    public ParticleSystem damageType;   // this will be passed on to enemies who take damage fron this strike
+    public int damageIndex;             // this will be passed on to enemies who take damage fron this strike
 
     private GameManager gameManager;
     private PlayerController playerController;
@@ -16,7 +17,6 @@ public class MissileStrike : MonoBehaviour
     private float missileSpeed = 80;
     private float strikeDuration = 10;
     private float counter;
-    private int damageIndex;
     private Color damageColor;
     private ParticleSystem weaponType;
  
@@ -25,6 +25,8 @@ public class MissileStrike : MonoBehaviour
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = GameObject.Find("Player Controller").GetComponent<PlayerController>();
+        
+        // get position and data for current damage type at the time strike is called
         strikePosition = gameManager.targetPosition.transform.position;
         damageIndex = playerController.damageIndex;
         weaponType = playerController.weaponType[damageIndex];

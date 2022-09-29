@@ -4,28 +4,31 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // private float speed = 1.6f;
-    public float health = 10;
+    protected float[] damageMult;
+    private float health = 10;
     private float angleOffset;
     private Vector3 direction;
     private float counter;
     private bool isDamageActive = false;
     private Animator enemyAnim;
     private ParticleSystem damageType;
-
-    // virtual static floats for fire, ice, and electricity damage multipliers
-
+    private int damageIndex;
+    private float baseDamage = 2.0f;
+    private float damageDuration = 10.0f;
     private GameManager gameManager;
 
     void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         enemyAnim = GetComponent<Animator>();
-        // turn towards player endzone
-        direction = (gameManager.EndZone - transform.position).normalized;
+
+        // turn enemy towards player endzone
+        direction = (gameManager.endZone - transform.position);
         angleOffset = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
         transform.Rotate(Vector3.up * angleOffset);
-
+        
+        // call method to set the enemy's damage multipliers for each damage type
+        SetDamageMult();
     }
 
     // Update is called once per frame
@@ -33,20 +36,15 @@ public class EnemyController : MonoBehaviour
     {
         if (isDamageActive)
         {
-            health -= 2 * Time.deltaTime; // other.damage * damagemultiplier
+            TakeDamage();                   // ABSTRACTION - calculations are moved to a separate method
             counter += Time.deltaTime;
-            if (counter > 10)               // var damageDuration based on enemy type, damage type?
+            if (counter > damageDuration)
             {
-                isDamageActive = false;     // damageDuration should influence duration of particleFX?              
+                isDamageActive = false;             
             }
         }
 
-       /* if (health > 0) // trying with animation driving motion rather than translate
-        {
-            // if alive, move forward
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        }*/
-        
+               
         if (health < 0 && !enemyAnim.GetBool("Death_b"))
         {
             //fall over and die, start timer to destroy body
@@ -56,7 +54,7 @@ public class EnemyController : MonoBehaviour
         }
         
 
-        if (transform.position.z < gameManager.EndZone.z)
+        if (transform.position.z < gameManager.endZone.z)
         {
             gameManager.GameOver();
         }
@@ -70,19 +68,37 @@ public class EnemyController : MonoBehaviour
          
     private void OnTriggerEnter(Collider other) 
     {
-        counter = 0; // entering new damage zone will replace current one-- one per damage type?
-        isDamageActive = true; // might need way to track multiple instances of damage active
+        // entering damage zone starts the counter for damage over time
+        counter = 0; 
+        isDamageActive = true;
 
-        // get damage type from other.damageIndex
+        // get damage index and damage type fx from the missile strike object
         damageType = other.GetComponent<MissileStrike>().damageType;
+        damageIndex = other.GetComponent<MissileStrike>().damageIndex;
 
-        ParticleSystem damage = Instantiate(damageType, transform.position + Vector3.up*1f, damageType.transform.rotation) as ParticleSystem;
+        // apply damageType fx to enemy
+        ParticleSystem damage = Instantiate(damageType, transform.position + Vector3.up*1.0f, damageType.transform.rotation) as ParticleSystem;
         damage.transform.SetParent(gameObject.transform); // activate particle effect for damage type, attach to enemy
+    }
+
+    protected virtual void SetDamageMult()
+    {
+        // this sets default damage multipliers. Child-classes can override this method to set their own values.
+        damageMult = new float[3];
+        damageMult[0] = 1;
+        damageMult[1] = 1;
+        damageMult[2] = 1;
+    }
+
+    private void TakeDamage()
+    {
+        // take damage over time
+        health -= baseDamage * damageMult[damageIndex] * Time.deltaTime;        
     }
 
     IEnumerator DeathDelay()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(4); // let body lie on the ground for a moment before destroying
         Destroy(gameObject);
     }
 }

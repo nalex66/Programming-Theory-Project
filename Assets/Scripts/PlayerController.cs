@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public GameObject targetIndicator;
-    public bool isMissileReady;
+    public bool isMissileReady { get; private set; }    // ENCAPSULATION - variable is access from other classes but not modified
     public List<ParticleSystem> weaponType;
     public List<ParticleSystem> damageType;
     public List<Material> damageColor;
@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 screenOrigin;
     private Vector2 screenLimit;
     private Ray targetRay;
-    private Plane targetPlane = new Plane(Vector3.up, 0);
-    private float strikeDelay = 3.0f;
+    private Plane targetPlane;
+    private float strikeDelay = 2.0f;
     
 
     // Start is called before the first frame update
@@ -28,13 +28,9 @@ public class PlayerController : MonoBehaviour
         damageIndex = 0;
         isMissileReady = true;
         targetIndicator.GetComponent<Renderer>().material.SetColor("_Color", damageColor[damageIndex].color);
+        targetPlane = new Plane(Vector3.up, 0);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+       
 
     public Vector3 UpdateTarget() // return a vector3 world position for target, based on mouse position
     {

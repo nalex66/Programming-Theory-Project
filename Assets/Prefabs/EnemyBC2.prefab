@@ -1448,8 +1448,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5788308532670268197}
   - component: {fileID: 5788308532679568581}
-  - component: {fileID: 5770031279033080264}
   - component: {fileID: 2536667432165771638}
+  - component: {fileID: 2774172231310158933}
+  - component: {fileID: -4703150620858774874}
   m_Layer: 0
   m_Name: EnemyBC2
   m_TagString: Untagged
@@ -1505,20 +1506,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5770031279033080264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5788308532670177029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1139518a842a7464c9522819cf20266c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  damageOverTime: {fileID: 5581853927429141229, guid: ffcfe916ce61aea4f9dea8ece6ddc6f8, type: 3}
 --- !u!54 &2536667432165771638
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1533,8 +1520,34 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &2774172231310158933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788308532670177029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7553081988c6bd040aeba09ee923e124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMult: []
+--- !u!114 &-4703150620858774874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788308532670177029}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1139518a842a7464c9522819cf20266c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMult: []
 --- !u!1 &5788308532670177037
 GameObject:
   m_ObjectHideFlags: 0

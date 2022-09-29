@@ -356,8 +356,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1435409576024301167}
   - component: {fileID: 1435409576031269263}
-  - component: {fileID: 8443520065721794895}
   - component: {fileID: 8098365949594057734}
+  - component: {fileID: -6765493649465494258}
+  - component: {fileID: -7942657955856656972}
   m_Layer: 0
   m_Name: EnemyWC2
   m_TagString: Untagged
@@ -413,20 +414,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8443520065721794895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435409576023867983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1139518a842a7464c9522819cf20266c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  damageOverTime: {fileID: 5581853927429141229, guid: ffcfe916ce61aea4f9dea8ece6ddc6f8, type: 3}
 --- !u!54 &8098365949594057734
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -441,8 +428,34 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-6765493649465494258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435409576023867983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c3b6e46823b8e499347e4af48bfe3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMult: []
+--- !u!114 &-7942657955856656972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435409576023867983}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1139518a842a7464c9522819cf20266c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMult: []
 --- !u!1 &1435409576023867985
 GameObject:
   m_ObjectHideFlags: 0

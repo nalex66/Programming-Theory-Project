@@ -512,8 +512,9 @@ MonoBehaviour:
   - {fileID: 1435409576023867983, guid: a2ca89185af209e499e58247e313c463, type: 3}
   - {fileID: 1671263826779568415, guid: 38994b73fe7570941adf15077c97d1e5, type: 3}
   missileStrike: {fileID: 4769641191923948206, guid: 67e47cfef996b1b49a82488228c9137f, type: 3}
-  EndZone: {x: 0, y: 0, z: -20}
+  EndZone: {x: 0, y: 0, z: -30}
   targetPosition: {fileID: 2030063468}
+  index: 0
 --- !u!4 &992354344
 Transform:
   m_ObjectHideFlags: 0
@@ -973,8 +974,8 @@ MonoBehaviour:
   - {fileID: 8104489851380044636, guid: 367d9a32c83579c408b57dbee6764ce1, type: 3}
   damageType:
   - {fileID: 5581853927429141229, guid: ffcfe916ce61aea4f9dea8ece6ddc6f8, type: 3}
-  - {fileID: 5581853927429141229, guid: ffcfe916ce61aea4f9dea8ece6ddc6f8, type: 3}
-  - {fileID: 5581853927429141229, guid: ffcfe916ce61aea4f9dea8ece6ddc6f8, type: 3}
+  - {fileID: 5749763748105319309, guid: f1c1f8fa45137414380c1f9e505ff052, type: 3}
+  - {fileID: 8104489851380044636, guid: 07c3dd9c6f2a8f440bd795e5a04e22b6, type: 3}
   damageColor:
   - {fileID: 2100000, guid: 10aebe5ec031d914b9ab18f6fd8b2c0f, type: 2}
   - {fileID: 2100000, guid: 44ad454ab0ea9e7409188a3e987813a4, type: 2}
